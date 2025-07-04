@@ -15,7 +15,7 @@ Modern, responsive bir ürün yönetim paneli. React, TypeScript, Supabase ve Ta
 ## 📱 Uygulama Ekran Görüntüleri
 
 ### 🔐 Giriş Sayfası
-![Giriş Sayfası](src/assets/SCR-20250704-qttg.png)
+![Giriş Sayfası](src/assets/SCR-20250704-quaa.png)
 
 ### ❌ Hata Yönetimi
 ![Giriş Hatası](src/assets/SCR-20250704-qtug.png)
@@ -24,7 +24,7 @@ Modern, responsive bir ürün yönetim paneli. React, TypeScript, Supabase ve Ta
 ![Dashboard](src/assets/dashboard.png)
 
 ### ➕ Ürün Ekleme
-![Ürün Ekleme](src/assets/SCR-20250704-qtzf.png)
+![Ürün Ekleme](src/assets/SCR-20250704-qttg.png)
 
 ### 📦 Ürün Listesi
 ![Ürün Listesi](src/assets/SCR-20250704-quaa.png)
