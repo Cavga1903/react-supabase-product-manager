@@ -1,137 +1,76 @@
-# React + Supabase Product Management Panel
+# React + Supabase Product Manager
 
-Bu proje, kullanıcıların giriş yapabileceği ve ürün ekleyebileceği bir React + Supabase tabanlı ürün yönetim paneli uygulamasıdır.
+Modern, responsive bir ürün yönetim paneli. React, TypeScript, Supabase ve Tailwind CSS kullanılarak geliştirilmiştir.
 
-## Özellikler
+## 🚀 Özellikler
 
-- ✅ Kullanıcı kayıt ve giriş sistemi (Supabase Auth)
-- ✅ Korumalı rotalar (ProtectedRoute)
-- ✅ Ürün ekleme formu (react-hook-form ile)
-- ✅ Resim yükleme (Supabase Storage)
-- ✅ Ürün listeleme
-- ✅ Form validasyonu
-- ✅ Loading durumları
-- ✅ Toast bildirimleri
-- ✅ Responsive tasarım (Tailwind CSS)
+- **Kullanıcı Kimlik Doğrulama**: Güvenli giriş/kayıt sistemi
+- **Ürün Yönetimi**: Ürün ekleme, görüntüleme ve yönetme
+- **Resim Yükleme**: Supabase Storage ile resim yükleme
+- **Responsive Tasarım**: Mobil ve masaüstü uyumlu
+- **Form Validasyonu**: React Hook Form ile doğrulama
+- **Toast Bildirimleri**: Başarı/hata mesajları
+- **Korumalı Rotalar**: Kimlik doğrulama gerektiren sayfalar
 
-## Teknolojiler
+## 📱 Uygulama Ekran Görüntüleri
 
-- **React 18** + **TypeScript**
-- **Vite** (build tool)
-- **Supabase** (backend, auth, storage)
-- **React Router DOM** (routing)
-- **React Hook Form** (form yönetimi)
-- **Tailwind CSS** + **Flowbite** (styling)
-- **React Hot Toast** (bildirimler)
+### 🔐 Giriş Sayfası
+![Giriş Sayfası](https://github.com/user-attachments/assets/login-page.png)
 
-## Kurulum
+### ❌ Hata Yönetimi
+![Giriş Hatası](https://github.com/user-attachments/assets/login-error.png)
 
-### 1. Projeyi Klonlayın
+### 🏠 Dashboard
+![Dashboard](https://github.com/user-attachments/assets/dashboard.png)
 
-```bash
-git clone <repo-url>
-cd gorev-18
-```
+### ➕ Ürün Ekleme
+![Ürün Ekleme](https://github.com/user-attachments/assets/add-product.png)
 
-### 2. Bağımlılıkları Yükleyin
+### 📦 Ürün Listesi
+![Ürün Listesi](https://github.com/user-attachments/assets/products-list.png)
 
-```bash
-npm install
-```
+## 🛠️ Teknolojiler
 
-### 3. Supabase Projesi Oluşturun
+- **Frontend**: React 18 + TypeScript + Vite
+- **Backend**: Supabase (Database + Auth + Storage)
+- **Styling**: Tailwind CSS
+- **Routing**: React Router DOM
+- **Forms**: React Hook Form
+- **Notifications**: React Hot Toast
 
-1. [Supabase Dashboard](https://supabase.com/dashboard) üzerinde yeni bir proje oluşturun
-2. Proje URL'si ve anon key'ini alın
+## 📋 Kurulum
 
-### 4. Environment Dosyası Oluşturun
+1. **Proje klonlama**:
+   ```bash
+   git clone https://github.com/Cavga1903/react-supabase-product-manager.git
+   cd react-supabase-product-manager
+   ```
 
-Proje kök dizininde `.env` dosyası oluşturun:
+2. **Bağımlılıkları yükleme**:
+   ```bash
+   npm install
+   ```
 
-```env
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
+3. **Çevre değişkenlerini ayarlama**:
+   ```bash
+   cp env.example .env
+   ```
+   `.env` dosyasını kendi Supabase bilgilerinizle güncelleyin.
 
-### 5. Supabase Veritabanı Tabloları
+4. **Geliştirme sunucusunu başlatma**:
+   ```bash
+   npm run dev
+   ```
 
-Supabase SQL Editor'da aşağıdaki SQL komutlarını çalıştırın:
-
-```sql
--- Products tablosu
-CREATE TABLE products (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  name TEXT NOT NULL,
-  description TEXT NOT NULL,
-  price DECIMAL(10,2) NOT NULL,
-  image_url TEXT,
-  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
--- RLS (Row Level Security) politikaları
-ALTER TABLE products ENABLE ROW LEVEL SECURITY;
-
--- Kullanıcılar sadece kendi ürünlerini görebilir
-CREATE POLICY "Users can view own products" ON products
-  FOR SELECT USING (auth.uid() = user_id);
-
--- Kullanıcılar sadece kendi ürünlerini ekleyebilir
-CREATE POLICY "Users can insert own products" ON products
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
-
--- Kullanıcılar sadece kendi ürünlerini güncelleyebilir
-CREATE POLICY "Users can update own products" ON products
-  FOR UPDATE USING (auth.uid() = user_id);
-
--- Kullanıcılar sadece kendi ürünlerini silebilir
-CREATE POLICY "Users can delete own products" ON products
-  FOR DELETE USING (auth.uid() = user_id);
-```
-
-### 6. Supabase Storage Bucket
-
-Supabase Dashboard'da Storage bölümünden:
-
-1. "products" isimli bir bucket oluşturun
-2. Bucket'i public yapın
-3. Aşağıdaki politikayı ekleyin:
-
-```sql
--- Storage policy for product images
-CREATE POLICY "Users can upload product images" ON storage.objects
-  FOR INSERT WITH CHECK (bucket_id = 'products' AND auth.role() = 'authenticated');
-
-CREATE POLICY "Public can view product images" ON storage.objects
-  FOR SELECT USING (bucket_id = 'products');
-```
-
-### 7. Uygulamayı Çalıştırın
-
-```bash
-npm run dev
-```
-
-Uygulama `http://localhost:5173` adresinde çalışacaktır.
-
-## Kullanım
-
-1. **Kayıt Ol**: `/signup` sayfasından yeni hesap oluşturun
-2. **Giriş Yap**: `/login` sayfasından giriş yapın
-3. **Dashboard**: Ana sayfa üzerinden ürün ekleme ve listeleme işlemlerini yapın
-4. **Ürün Ekle**: `/add-product` sayfasından yeni ürün ekleyin
-5. **Ürünleri Görüntüle**: `/products` sayfasından eklediğiniz ürünleri görün
-
-## Proje Yapısı
+## 🏗️ Proje Yapısı
 
 ```
 src/
 ├── components/
 │   └── auth/
 │       ├── Login.tsx
-│       ├── ProtectedRoute.tsx
-│       └── Signup.tsx
+│       ├── Signup.tsx
+│       └── ProtectedRoute.tsx
 ├── contexts/
 │   └── AuthContext.tsx
 ├── features/
@@ -143,28 +82,99 @@ src/
 │   ├── Dashboard.tsx
 │   └── Products.tsx
 ├── App.tsx
-├── main.tsx
-└── index.css
+└── main.tsx
 ```
 
-## Build ve Deploy
+## 🗄️ Veritabanı Yapısı
 
+### Products Tablosu
+```sql
+CREATE TABLE products (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  description TEXT,
+  price DECIMAL(10,2) NOT NULL,
+  image_url TEXT,
+  user_id UUID REFERENCES auth.users(id),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+```
+
+### Storage Bucket
+```sql
+-- product-images bucket for storing product images
+INSERT INTO storage.buckets (id, name, public) VALUES ('product-images', 'product-images', true);
+```
+
+## 🚀 Deployment
+
+### Vercel
 ```bash
-# Production build
 npm run build
-
-# Build dosyalarını test et
-npm run preview
+# Deploy to Vercel
+vercel --prod
 ```
 
-## Katkıda Bulunma
+### Netlify
+```bash
+npm run build
+# Deploy dist folder to Netlify
+```
+
+## 📝 API Endpoints
+
+### Authentication
+- `POST /auth/signup` - Kullanıcı kaydı
+- `POST /auth/signin` - Kullanıcı girişi
+- `POST /auth/signout` - Çıkış yapma
+
+### Products
+- `GET /products` - Kullanıcının ürünlerini listele
+- `POST /products` - Yeni ürün ekle
+- `PUT /products/:id` - Ürün güncelle
+- `DELETE /products/:id` - Ürün sil
+
+### Storage
+- `POST /storage/product-images` - Ürün resmi yükle
+
+## 🔧 Yapılandırma
+
+### Supabase Setup
+1. [Supabase](https://supabase.com) hesabı oluşturun
+2. Yeni proje oluşturun
+3. `supabase-setup.sql` dosyasını SQL Editor'da çalıştırın
+4. Storage bucket'ını ayarlayın
+5. RLS (Row Level Security) politikalarını aktifleştirin
+
+### Environment Variables
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+## 🤝 Katkıda Bulunma
 
 1. Fork yapın
-2. Feature branch oluşturun (`git checkout -b feature/yeni-ozellik`)
-3. Commit yapın (`git commit -am 'Yeni özellik eklendi'`)
-4. Branch'i push edin (`git push origin feature/yeni-ozellik`)
-5. Pull Request açın
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Commit yapın (`git commit -m 'Add amazing feature'`)
+4. Push yapın (`git push origin feature/amazing-feature`)
+5. Pull Request oluşturun
 
-## Lisans
+## 📄 Lisans
 
-Bu proje MIT lisansı altında lisanslanmıştır.
+Bu proje [MIT](LICENSE) lisansı altında lisanslanmıştır.
+
+## 👨‍💻 Geliştirici
+
+- **Cavga1903** - [GitHub](https://github.com/Cavga1903)
+
+## 🙏 Teşekkürler
+
+- [Supabase](https://supabase.com) - Backend as a Service
+- [React](https://reactjs.org) - UI Framework
+- [Tailwind CSS](https://tailwindcss.com) - CSS Framework
+- [Vite](https://vitejs.dev) - Build Tool
+
+---
+
+⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın!
