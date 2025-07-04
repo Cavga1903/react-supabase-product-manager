@@ -1,0 +1,13 @@
+# Assets folder for project images and screenshots
+
+This folder contains:
+- Screenshots of the application
+- UI mockups
+- Project related images
+
+## Screenshots included:
+- login-page.png - Login page screenshot
+- login-error.png - Login error state
+- dashboard.png - Main dashboard view
+- add-product.png - Add product form
+- products-list.png - Products listing page 

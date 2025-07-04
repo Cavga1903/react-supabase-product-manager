@@ -15,19 +15,19 @@ Modern, responsive bir ürün yönetim paneli. React, TypeScript, Supabase ve Ta
 ## 📱 Uygulama Ekran Görüntüleri
 
 ### 🔐 Giriş Sayfası
-![Giriş Sayfası](https://github.com/user-attachments/assets/login-page.png)
+![Giriş Sayfası](src/assets/login-page.png)
 
 ### ❌ Hata Yönetimi
-![Giriş Hatası](https://github.com/user-attachments/assets/login-error.png)
+![Giriş Hatası](src/assets/login-error.png)
 
 ### 🏠 Dashboard
-![Dashboard](https://github.com/user-attachments/assets/dashboard.png)
+![Dashboard](src/assets/dashboard.png)
 
 ### ➕ Ürün Ekleme
-![Ürün Ekleme](https://github.com/user-attachments/assets/add-product.png)
+![Ürün Ekleme](src/assets/add-product.png)
 
 ### 📦 Ürün Listesi
-![Ürün Listesi](https://github.com/user-attachments/assets/products-list.png)
+![Ürün Listesi](src/assets/products-list.png)
 
 ## 🛠️ Teknolojiler
 
