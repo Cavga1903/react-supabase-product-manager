@@ -1,8 +1,9 @@
 
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './contexts/AuthContext'
 import ProtectedRoute from './components/auth/ProtectedRoute'
+import LandingPage from './components/LandingPage'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import Dashboard from './pages/Dashboard'
@@ -15,8 +16,8 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
-            {/* Redirect root to dashboard */}
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            {/* Landing page with authentication-based redirect */}
+            <Route path="/" element={<LandingPage />} />
             
             {/* Public routes */}
             <Route path="/login" element={<Login />} />
