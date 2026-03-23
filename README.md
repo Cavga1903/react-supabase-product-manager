@@ -175,3 +175,80 @@ Bu proje [MIT](LICENSE) lisansı altında lisanslanmıştır.
 ---
 
 ⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın!
+
+---
+
+## 🇩🇪 Deutsche Beschreibung
+
+**React + Supabase Product Manager** ist ein modernes, responsives Produktverwaltungs-Dashboard, entwickelt mit React, TypeScript, Supabase und Tailwind CSS.
+
+### 🚀 Funktionen
+
+- **Benutzerauthentifizierung** — Sicheres Anmelde-/Registrierungssystem
+- **Produktverwaltung** — Produkte hinzufügen, anzeigen und verwalten
+- **Bild-Upload** — Bildupload mit Supabase Storage
+- **Responsives Design** — Mobil- und Desktop-kompatibel
+- **Formularvalidierung** — Validierung mit React Hook Form
+- **Toast-Benachrichtigungen** — Erfolgs-/Fehlermeldungen
+- **Geschützte Routen** — Authentifizierungspflichtige Seiten
+
+### 📋 Installation
+
+```bash
+# Repository klonen
+git clone https://github.com/Cavga1903/react-supabase-product-manager.git
+cd react-supabase-product-manager
+
+# Abhängigkeiten installieren
+npm install
+
+# Umgebungsvariablen konfigurieren
+cp env.example .env
+# .env mit Ihren Supabase-Zugangsdaten aktualisieren
+
+# Entwicklungsserver starten
+npm run dev
+```
+
+### 🛠️ Technologie-Stack
+
+| Bereich | Technologie |
+|---------|-------------|
+| Frontend | React 18, TypeScript, Vite |
+| Backend | Supabase (Datenbank + Auth + Storage) |
+| Styling | Tailwind CSS |
+| Routing | React Router DOM |
+| Formulare | React Hook Form |
+| Benachrichtigungen | React Hot Toast |
+
+### 🔧 Supabase-Konfiguration
+
+1. [Supabase](https://supabase.com)-Konto erstellen
+2. Neues Projekt anlegen
+3. `supabase-setup.sql` im SQL-Editor ausführen
+4. Storage-Bucket konfigurieren
+5. RLS (Row Level Security) Richtlinien aktivieren
+
+### Umgebungsvariablen
+
+```env
+VITE_SUPABASE_URL=ihre_supabase_url
+VITE_SUPABASE_ANON_KEY=ihr_supabase_anon_key
+```
+
+### 🚀 Deployment
+
+```bash
+# Vercel
+npm run build && vercel --prod
+
+# Netlify
+npm run build
+# dist-Ordner zu Netlify deployen
+```
+
+### 👨‍💻 Entwickler
+
+- **Cavga1903** — [GitHub](https://github.com/Cavga1903)
+
+⭐ Wenn Ihnen dieses Projekt gefällt, hinterlassen Sie gerne einen Stern!
